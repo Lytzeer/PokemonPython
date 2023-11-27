@@ -10,7 +10,8 @@ class Character:
         self._damage = damage
         self._defense = defense
         self._type = character_type
-        self._attack_list = {}
+        self._attack_list = {} # {attack_name: damage, ...}
+        # Create healthbar
         self._healthbar = Healthbar(self._name, self._max_hp, self._hp)
         self._healthbar.create_healthbar()
 
@@ -66,6 +67,8 @@ class Character:
         else:
             return 1
         
+# Pokemon
+
 class Salameche(Character):
     pass
 
