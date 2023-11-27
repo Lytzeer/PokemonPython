@@ -65,3 +65,30 @@ class Character:
                 return 1
         else:
             return 1
+        
+class Salameche(Character):
+    pass
+
+class Arcanin(Character):
+    pass
+
+class Ponyta(Character):
+    pass
+
+class Carapuce(Character):
+    pass
+
+class Tortank(Character):
+    pass
+
+class Psykokwak(Character):
+    pass
+
+class Bulbizarre(Character):
+    pass
+
+class Florizarre(Character):
+    pass
+
+class Paras(Character):
+    pass
