@@ -2,11 +2,13 @@ from panel import Panels
 from rich import print
 from rich.table import Table
 from os import system
+from healthbar import Healthbar
 
 class Affichage:
     def __init__(self):
         self._panel = Panels("Welcome", "Welcome to Pokemon Battle!",(1,3))
         self._table = Table()
+        self._healthbar = Healthbar("Test", 100, 100)
 
     def convert_is_alive(self, is_alive):
         if is_alive:
@@ -49,3 +51,58 @@ class Affichage:
 
     def display_attack_choose(self, attack):
         print(f"You choose [red]{attack}[/red] attack!")
+
+    def display_combat_hud(self, player_pokemon, bot_pokemon, round):
+        self.clear()
+        self._panel.create_panel()
+        self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
+        self._panel.update_panel_subtitle(f"[cyan]Round {round}[/cyan]")
+        self._panel.update_panel_text(f"[green]{player_pokemon.get_name()}[/green] [magenta]VS[/magenta] [red]{bot_pokemon.get_name()}[/red]")
+        self._panel.display_panel()
+        self._healthbar.create_healthbar()
+        self._healthbar.update_health(player_pokemon.get_hp())
+        self._healthbar.update_maxHealth(player_pokemon.get_max_hp())
+        self._healthbar.update_name(player_pokemon.get_name())
+        self._healthbar.display_healthbar()
+        print(f"\n[magenta]VS[/magenta]\n")
+        self._healthbar.update_health(bot_pokemon.get_hp())
+        self._healthbar.update_maxHealth(bot_pokemon.get_max_hp())
+        self._healthbar.update_name(bot_pokemon.get_name())
+        self._healthbar.display_healthbar()
+
+    def display_player_winner(self, player_pokemon):
+        self.clear()
+        self._panel.create_panel()
+        self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
+        self._panel.update_panel_subtitle(f"[cyan]Winner[/cyan]")
+        self._panel.update_panel_text(f"[green]{player_pokemon.get_name()}[/green] [magenta]WIN![/magenta]")
+        self._panel.display_panel()
+        self._healthbar.create_healthbar()
+        self._healthbar.update_health(player_pokemon.get_hp())
+        self._healthbar.update_maxHealth(player_pokemon.get_max_hp())
+        self._healthbar.update_name(player_pokemon.get_name())
+        self._healthbar.display_healthbar()
+
+    def display_bot_winner(self, bot_pokemon):
+        self.clear()
+        self._panel.create_panel()
+        self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
+        self._panel.update_panel_subtitle(f"[cyan]Winner[/cyan]")
+        self._panel.update_panel_text(f"[red]{bot_pokemon.get_name()}[/red] [magenta]WIN![/magenta]")
+        self._panel.display_panel()
+        self._healthbar.create_healthbar()
+        self._healthbar.update_health(bot_pokemon.get_hp())
+        self._healthbar.update_maxHealth(bot_pokemon.get_max_hp())
+        self._healthbar.update_name(bot_pokemon.get_name())
+        self._healthbar.display_healthbar()
+
+    def display_game_winner(self, winner: bool):
+        self.clear()
+        self._panel.create_panel()
+        self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
+        self._panel.update_panel_subtitle(f"[cyan]Winner[/cyan]")
+        if winner:
+            self._panel.update_panel_text(f"[green]You[/green] [magenta]WIN![/magenta]")
+        else:
+            self._panel.update_panel_text(f"[red]Bot[/red] [magenta]WIN![/magenta]")
+        self._panel.display_panel()
