@@ -12,6 +12,9 @@ class Healthbar:
         self._Health = health
         self._progress_bar.update(health)
 
+    def update_maxHealth(self,maxHealth):
+        self._maxHealth = maxHealth
+
     def update_name(self, name):
         self._name = name
 
