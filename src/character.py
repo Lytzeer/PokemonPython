@@ -4,11 +4,10 @@ from affichage import Affichage
 
 class Character:
 
-    def __init__(self, name, maxhp, damage, defense, character_type, attack_list):
+    def __init__(self, name, maxhp, defense, character_type, attack_list):
         self._name = name
         self._hp = maxhp
         self._max_hp = maxhp
-        self._damage = damage
         self._defense = defense
         self._type = character_type
         self._attack_list = attack_list # {attack_name: damage, ...}
@@ -24,11 +23,11 @@ class Character:
     def get_hp(self):
         return self._hp
     
+    def get_max_hp(self):
+        return self._max_hp
+    
     def get_attack_list(self):
         return self._attack_list
-    
-    def get_damage(self):
-        return self._damage
     
     def get_type(self):
         return self._type
@@ -42,9 +41,11 @@ class Character:
     def is_alive(self):
         return self._hp > 0
     
-    def attack(self, enemy):
-        attack_name = self.choose_attack()
+    def attack(self, attack_name, enemy):
         enemy.decrease_hp(self._attack_list[attack_name])
+
+    def compute_wounds(self, attack):
+        return attack - self._defense
     
     def check_type(self, enemy):
         if self._type == "fire":
@@ -136,3 +137,4 @@ if __name__ == "__main__":
         case "2":
             attack = "Fireball"
     affichage.display_attack_choose(attack)
+    affichage.display_combat_hud(character_list[0], character_list[1], 1)
