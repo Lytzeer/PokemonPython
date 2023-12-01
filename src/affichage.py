@@ -139,5 +139,14 @@ class Affichage:
         self._panel.create_panel()
         self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
         self._panel.update_panel_subtitle(f"[cyan]Main Menu[/cyan]")
-        self._panel.update_panel_text(f"[green]1.[/green] Play\n[magenta]2.[/magenta] Quit")
+        self._panel.update_panel_text(f"[green]1.[/green] Play\n[orange3]2.[/orange3] Info\n[magenta]3.[/magenta] Quit")
         self._panel.display_panel()
+
+    def display_info(self):
+        self.clear()
+        self._panel.create_panel()
+        self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
+        self._panel.update_panel_subtitle(f"[cyan]Info[/cyan]")
+        self._panel.update_panel_text(f"Hello, this is a Pokemon Battle game made by [green]Lytzeer[/green]\n\n[red]Github : [/red][white] https://github.com/Lytzeer[/white]\n[red]Discord : [/red][white] Lytzeer[/white]")
+        self._panel.display_panel()
+        print(f"Press [green]Enter[/green] to continue...")
