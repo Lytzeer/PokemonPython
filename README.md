@@ -21,3 +21,14 @@ pip install -r requirements.txt
 python .\src\play.py
 ```
 5. Enjoy it !
+
+## II. What is possible ?
+
+You can do pokemon fight with a team of 2 pokemon.
+To choose your team, you just need to enter the id, one by one, of the pokemon you want.
+After that you can choose the pokemon you want in first for the fight.
+During the attack phase you just need to enter the exactly same name of the attack you want to do.
+
+INFO : The game take care of strenghts and weaknesses of each pokemon type.
+
+The opponent is a bot so all his choices are random (pokemon & attack).
