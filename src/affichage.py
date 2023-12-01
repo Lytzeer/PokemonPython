@@ -20,7 +20,13 @@ class Affichage:
         system("cls")
 
 
-    def display_character_list(self, character_list):
+    def display_character_list(self, character_list, pokemon_stats):
+        self._panel.create_panel()
+        self._panel.update_panel_title(f"[blue]Character Choice[/blue]")
+        self._panel.update_panel_text(f"[magenta]Choose your characters for the fight[/magenta]")
+        self._panel.update_panel_color("red")
+        self._panel.display_panel()
+        print("\n")
         self._table.title = f"[blue]Character List[/blue]"
         self._table.add_column(f"[magenta]ID[/magenta]")
         self._table.add_column(f"[magenta]Name[/magenta]")
@@ -29,7 +35,24 @@ class Affichage:
         self._table.add_column(f"[cyan]Is Alive[/cyan]", justify="center")
         i=1
         for character in character_list:
-            self._table.add_row(str(i),character.get_name(), str(character.get_hp()), character.get_type(), self.convert_is_alive(character.is_alive()))
+            self._table.add_row(str(i),character, str(pokemon_stats[character]["HP"]), pokemon_stats[character]["Type"], self.convert_is_alive(pokemon_stats[character]["HP"]>0))
+            i+=1
+        print(self._table)
+        self._table = Table()
+
+    def display_characters_choose(self, character_list):
+        self._panel.create_panel()
+        self._panel.update_panel_title(f"[blue]Character Choice[/blue]")
+        self._panel.update_panel_text(f"[magenta]Choose your characters for the fight[/magenta]")
+        self._panel.update_panel_color("red")
+        self._panel.display_panel()
+        print("\n")
+        self._table.title = f"[blue]Character List[/blue]"
+        self._table.add_column(f"[magenta]ID[/magenta]")
+        self._table.add_column(f"[magenta]Name[/magenta]")
+        i=1
+        for character in character_list:
+            self._table.add_row(str(i),character.get_name())
             i+=1
         print(self._table)
         self._table = Table()
@@ -105,4 +128,12 @@ class Affichage:
             self._panel.update_panel_text(f"[green]You[/green] [magenta]WIN![/magenta]")
         else:
             self._panel.update_panel_text(f"[red]Bot[/red] [magenta]WIN![/magenta]")
+        self._panel.display_panel()
+
+    def main_menu(self):
+        self.clear()
+        self._panel.create_panel()
+        self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
+        self._panel.update_panel_subtitle(f"[cyan]Main Menu[/cyan]")
+        self._panel.update_panel_text(f"[green]1.[/green] Play\n[magenta]2.[/magenta] Quit")
         self._panel.display_panel()
