@@ -28,7 +28,7 @@ class Affichage:
         self._panel.display_panel()
         print("\n")
         self._table.title = f"[blue]Character List[/blue]"
-        self._table.add_column(f"[magenta]ID[/magenta]")
+        self._table.add_column(f"[orange3]ID[/orange3]")
         self._table.add_column(f"[magenta]Name[/magenta]")
         self._table.add_column(f"[red]HP[/red]")
         self._table.add_column(f"[green]Type[/green]")
@@ -40,7 +40,10 @@ class Affichage:
         print(self._table)
         self._table = Table()
 
-    def display_characters_choose(self, character_list):
+    def display_characters_choose(self, character_list,error = ""):
+        self.clear()
+        if error != "":
+            print(error)
         self._panel.create_panel()
         self._panel.update_panel_title(f"[blue]Character Choice[/blue]")
         self._panel.update_panel_text(f"[magenta]Choose your characters for the fight[/magenta]")
@@ -48,11 +51,12 @@ class Affichage:
         self._panel.display_panel()
         print("\n")
         self._table.title = f"[blue]Character List[/blue]"
-        self._table.add_column(f"[magenta]ID[/magenta]")
+        self._table.add_column(f"[orange3]ID[/orange3]")
         self._table.add_column(f"[magenta]Name[/magenta]")
+        self._table.add_column(f"[red]HP[/red]")
         i=1
         for character in character_list:
-            self._table.add_row(str(i),character.get_name())
+            self._table.add_row(str(i),character.get_name(), str(character.get_hp()))
             i+=1
         print(self._table)
         self._table = Table()
