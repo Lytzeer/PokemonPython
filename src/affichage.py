@@ -80,7 +80,6 @@ class Affichage:
         print(f"You choose [red]{attack}[/red] attack!")
 
     def display_combat_hud(self, player_pokemon, bot_pokemon, round):
-        self.clear()
         self._panel.create_panel()
         self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
         self._panel.update_panel_subtitle(f"[cyan]Round {round}[/cyan]")
