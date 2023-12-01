@@ -12,8 +12,12 @@ git clone https://github.com/Lytzeer/PokemonPython.git
 ```shell
 cd .\PokemonPython\
 ```
-3. Launch the game
+3. Install requirments
+```shell
+pip install -r requirments.txt
+```
+4. Launch the game
 ```shell
 python .\src\play.py
 ```
-4. Enjoy it !
+5. Enjoy it !
