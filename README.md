@@ -1,6 +1,6 @@
 # Pokemon Combat System
 
-This project consist to recreate the combat system of pokemon in Python with the OOP
+This project consist to recreate the combat system of pokemon in Python 3.12 with the OOP
 
 ## I. How to launch the game
 
