@@ -1,3 +1,4 @@
+from __future__ import annotations
 from rich import print
 from healthbar import Healthbar
 from affichage import Affichage
@@ -41,8 +42,8 @@ class Character:
     def is_alive(self):
         return self._hp > 0
     
-    def attack(self, attack_name, enemy):
-        enemy.decrease_hp(self._attack_list[attack_name])
+    def attack(self, enemy: Character, attack_name: str):
+        enemy.decrease_hp(enemy.compute_wounds(self._attack_list[attack_name])*self.check_type(enemy))
 
     def compute_wounds(self, attack):
         return attack - self._defense
