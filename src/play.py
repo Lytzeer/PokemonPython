@@ -18,36 +18,36 @@ def create_pokemon_list() -> list:
 
 def create_all_pokemon_stats() -> dict:
     pokemon_stats = {}
-    pokemon_stats["Salameche"] = {"HP": 100, "Attack": 5, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
-    pokemon_stats["Arcanin"] = {"HP": 100, "Attack": 5, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
-    pokemon_stats["Ponyta"] = {"HP": 100, "Attack": 5, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
-    pokemon_stats["Carapuce"] = {"HP": 100, "Attack": 5, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
-    pokemon_stats["Tortank"] = {"HP": 100, "Attack": 5, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
-    pokemon_stats["Psykokwak"] = {"HP": 100, "Attack": 5, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
-    pokemon_stats["Bulbizarre"] = {"HP": 100, "Attack": 5, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
-    pokemon_stats["Florizarre"] = {"HP": 100, "Attack": 5, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
-    pokemon_stats["Paras"] = {"HP": 100, "Attack": 5, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
+    pokemon_stats["Salameche"] = {"HP": 100, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
+    pokemon_stats["Arcanin"] = {"HP": 100, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
+    pokemon_stats["Ponyta"] = {"HP": 100, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
+    pokemon_stats["Carapuce"] = {"HP": 100, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
+    pokemon_stats["Tortank"] = {"HP": 100, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
+    pokemon_stats["Psykokwak"] = {"HP": 100, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
+    pokemon_stats["Bulbizarre"] = {"HP": 100, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
+    pokemon_stats["Florizarre"] = {"HP": 100, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
+    pokemon_stats["Paras"] = {"HP": 100, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
     return pokemon_stats
 
-def create_pokemon(pokemon_name: str) -> Character:
+def create_pokemon(pokemon_name: str,pokemon_stats) -> Character:
     if pokemon_name == "Salameche":
-        return Salameche("Salameche", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20})
+        return Salameche(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     elif pokemon_name == "Arcanin":
-        return Arcanin("Arcanin", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20})
+        return Arcanin(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     elif pokemon_name == "Ponyta":
-        return Ponyta("Ponyta", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20})
+        return Ponyta(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     elif pokemon_name == "Carapuce":
-        return Carapuce("Carapuce", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20})
+        return Carapuce(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     elif pokemon_name == "Tortank":
-        return Tortank("Tortank", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20})
+        return Tortank(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     elif pokemon_name == "Psykokwak":
-        return Psykokwak("Psykokwak", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20})
+        return Psykokwak(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     elif pokemon_name == "Bulbizarre":
-        return Bulbizarre("Bulbizarre", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20})
+        return Bulbizarre(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     elif pokemon_name == "Florizarre":
-        return Florizarre("Florizarre", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20})
+        return Florizarre(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     elif pokemon_name == "Paras":
-        return Paras("Paras", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20})
+        return Paras(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
     else:
         print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
         exit(1)
@@ -64,14 +64,14 @@ def choose_pokemon(pokemon_list: list) -> list:
                 affichage.clear()
                 print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
                 exit(1)
-            chosen_pokemon.append(create_pokemon(pokemon_list[choice-1]))
+            chosen_pokemon.append(create_pokemon(pokemon_list[choice-1],pokemon_stats[pokemon_list[choice-1]]))
         else:
             choice=int(input("Choose your pokemon: "))
             if choice == 0 or choice > len(pokemon_list):
                 affichage.clear()
                 print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
                 exit(1)
-            chosen_pokemon.append(create_pokemon(pokemon_list[choice-1]))
+            chosen_pokemon.append(create_pokemon(pokemon_list[choice-1],pokemon_stats[pokemon_list[choice-1]]))
         affichage.clear()
     return chosen_pokemon
 
@@ -93,29 +93,30 @@ def choose_attack_bot(character: Character) -> str:
     
     
 def choose_pokemon_bot(pokemon_list: list) -> list:
+    pokemon_stats= create_all_pokemon_stats()
     chosen_pokemon = []
     randnb = random.randint(0, len(pokemon_list)-1)
-    chosen_pokemon.append(create_pokemon(pokemon_list[randnb]))
+    chosen_pokemon.append(create_pokemon(pokemon_list[randnb],pokemon_stats[pokemon_list[randnb]]))
     randnb2 = random.randint(0, len(pokemon_list)-1)
     while randnb2 == randnb:
         randnb2 = random.randint(0, len(pokemon_list)-1)
-    chosen_pokemon.append(create_pokemon(pokemon_list[randnb2]))
+    chosen_pokemon.append(create_pokemon(pokemon_list[randnb2],pokemon_stats[pokemon_list[randnb2]]))
     return chosen_pokemon
 
-def choose_pokemon_to_fight(player_inventory: list) -> Character:
+def choose_pokemon_to_fight(player_inventory: list, error="") -> Character:
     affichage=Affichage()
     pokemon_stats=create_all_pokemon_stats()
-    affichage.display_characters_choose(player_inventory)
-    pokemon = int(input("Choose your pokemon for the fight: "))
+    affichage.display_characters_choose(player_inventory,error)
+    pokemon =input("Choose your pokemon for the fight: ")
     match(pokemon):
-        case 1:
+        case "1":
             return player_inventory[0]
-        case 2:
+        case "2":
             return player_inventory[1]
         case _:
             affichage.clear()
-            print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
-            return choose_pokemon_to_fight(player_inventory)
+            error = f"[red]Error : [/red][white]Choose a valid pokemon[/white]"
+            return choose_pokemon_to_fight(player_inventory,error)
         
 def choose_pokemon_to_fight_bot(bot_inventory: list) -> Character:
     randnb = random.randint(0, len(bot_inventory)-1)
