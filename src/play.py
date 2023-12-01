@@ -75,14 +75,19 @@ def choose_pokemon(pokemon_list: list) -> list:
         affichage.clear()
     return chosen_pokemon
 
-def choose_attack(character: Character) -> str:
+def choose_attack(character: Character,bot_pokemon: Character, round,error="") -> str:
     affichage=Affichage()
+    if error != "":
+        print(error)
+    affichage.display_combat_hud(character, bot_pokemon, round)
     affichage.display_attack_list(character.get_attack_list())
     attack = input("Your choice: ")
     if attack in character.get_attack_list():
         return attack
     else:
-        return choose_attack(character)
+        error = f"[red]Error : [/red][white]Choose a valid attack[/white]"
+        affichage.clear()
+        return choose_attack(character,bot_pokemon,round,error)
     
 def choose_attack_bot(character: Character) -> str:
     a_list = []
@@ -127,8 +132,7 @@ def combat(player_pokemon: Character, bot_pokemon: Character)-> bool:
     round = 1
     while player_pokemon.is_alive() and bot_pokemon.is_alive():
         affichage.clear()
-        affichage.display_combat_hud(player_pokemon, bot_pokemon, round)
-        attack = choose_attack(player_pokemon)
+        attack = choose_attack(player_pokemon,bot_pokemon,round)
         bot_attack = choose_attack_bot(bot_pokemon)
         player_pokemon.attack(bot_pokemon, attack)
         bot_pokemon.attack(player_pokemon, bot_attack)
