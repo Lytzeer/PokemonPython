@@ -5,11 +5,10 @@ from affichage import Affichage
 
 class Character:
 
-    def __init__(self, name, maxhp, defense, character_type, attack_list):
+    def __init__(self, name, maxhp, character_type, attack_list):
         self._name = name
         self._hp = maxhp
         self._max_hp = maxhp
-        self._defense = defense
         self._type = character_type
         self._attack_list = attack_list # {attack_name: damage, ...}
         # Create healthbar
@@ -43,10 +42,7 @@ class Character:
         return self._hp > 0
     
     def attack(self, enemy: Character, attack_name: str):
-        enemy.decrease_hp(enemy.compute_wounds(self._attack_list[attack_name])*self.check_type(enemy))
-
-    def compute_wounds(self, attack):
-        return attack - self._defense
+        enemy.decrease_hp(self._attack_list[attack_name]*self.check_type(enemy))
     
     def check_type(self, enemy):
         if self._type == "fire":
