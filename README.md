@@ -12,9 +12,9 @@ git clone https://github.com/Lytzeer/PokemonPython.git
 ```shell
 cd .\PokemonPython\
 ```
-3. Install requirments
+3. Install requirements
 ```shell
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
 4. Launch the game
 ```shell
