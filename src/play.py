@@ -153,11 +153,20 @@ def main_menu_choice():
     affichage=Affichage()
     affichage.main_menu()
     choice=int(input("Your choice: "))
-    if choice != 1 and choice != 2:
+    if choice != 1 and choice != 2 and 3:
         affichage.clear()
         print(f"[red]Error : [/red][white]Choose a valid option[/white]")
         exit(1)
+    if choice == 1:
+        affichage.clear()
+        return
     if choice == 2:
+        affichage.clear()
+        affichage.display_info()
+        input(f">>>")
+        main_menu_choice()
+        return
+    if choice == 3:
         affichage.clear()
         exit(0)
 
@@ -190,7 +199,6 @@ def check_winner(player_inventory: list) -> bool:
 def main():
     affichage=Affichage()
     main_menu_choice()
-    affichage.clear()
     player_inventory, bot_inventory = init_game()
     init_combat(player_inventory, bot_inventory)
     affichage.display_game_winner(check_winner(player_inventory))
