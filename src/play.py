@@ -1,30 +1,77 @@
 from character import Character, Salameche, Arcanin, Carapuce, Tortank, Bulbizarre, Florizarre, Ponyta, Psykokwak, Paras
 from affichage import Affichage
+from rich import print
 import random
-import time
 
-def create_pokemon() -> list:
+def create_pokemon_list() -> list:
     pokemon_list = []
-    pokemon_list.append(Salameche("Salameche", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20}))
-    pokemon_list.append(Arcanin("Arcanin", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20}))
-    pokemon_list.append(Ponyta("Ponyta", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20}))
-    pokemon_list.append(Carapuce("Carapuce", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20}))
-    pokemon_list.append(Tortank("Tortank", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20}))
-    pokemon_list.append(Psykokwak("Psykokwak", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20}))
-    pokemon_list.append(Bulbizarre("Bulbizarre", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20}))
-    pokemon_list.append(Florizarre("Florizarre", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20}))
-    pokemon_list.append(Paras("Paras", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20}))
+    pokemon_list.append("Salameche")
+    pokemon_list.append("Arcanin")
+    pokemon_list.append("Ponyta")
+    pokemon_list.append("Carapuce")
+    pokemon_list.append("Tortank")
+    pokemon_list.append("Psykokwak")
+    pokemon_list.append("Bulbizarre")
+    pokemon_list.append("Florizarre")
+    pokemon_list.append("Paras")
     return pokemon_list
+
+def create_all_pokemon_stats() -> dict:
+    pokemon_stats = {}
+    pokemon_stats["Salameche"] = {"HP": 100, "Attack": 5, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
+    pokemon_stats["Arcanin"] = {"HP": 100, "Attack": 5, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
+    pokemon_stats["Ponyta"] = {"HP": 100, "Attack": 5, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
+    pokemon_stats["Carapuce"] = {"HP": 100, "Attack": 5, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
+    pokemon_stats["Tortank"] = {"HP": 100, "Attack": 5, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
+    pokemon_stats["Psykokwak"] = {"HP": 100, "Attack": 5, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
+    pokemon_stats["Bulbizarre"] = {"HP": 100, "Attack": 5, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
+    pokemon_stats["Florizarre"] = {"HP": 100, "Attack": 5, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
+    pokemon_stats["Paras"] = {"HP": 100, "Attack": 5, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
+    return pokemon_stats
+
+def create_pokemon(pokemon_name: str) -> Character:
+    if pokemon_name == "Salameche":
+        return Salameche("Salameche", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20})
+    elif pokemon_name == "Arcanin":
+        return Arcanin("Arcanin", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20})
+    elif pokemon_name == "Ponyta":
+        return Ponyta("Ponyta", 100, 5, "fire", {"Flamethrower": 10, "Fire Blast": 20})
+    elif pokemon_name == "Carapuce":
+        return Carapuce("Carapuce", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20})
+    elif pokemon_name == "Tortank":
+        return Tortank("Tortank", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20})
+    elif pokemon_name == "Psykokwak":
+        return Psykokwak("Psykokwak", 100, 5, "water", {"Water Gun": 10, "Hydro Pump": 20})
+    elif pokemon_name == "Bulbizarre":
+        return Bulbizarre("Bulbizarre", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20})
+    elif pokemon_name == "Florizarre":
+        return Florizarre("Florizarre", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20})
+    elif pokemon_name == "Paras":
+        return Paras("Paras", 100, 5, "grass", {"Vine Whip": 10, "Razor Leaf": 20})
+    else:
+        print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
+        exit(1)
 
 def choose_pokemon(pokemon_list: list) -> list:
     chosen_pokemon = []
+    pokemon_stats=create_all_pokemon_stats()
     affichage = Affichage()
     for i in range(2):
-        affichage.display_character_list(pokemon_list)
+        affichage.display_character_list(pokemon_list,pokemon_stats)
         if i>0:
-            chosen_pokemon.append(pokemon_list[int(input("Choose your second pokemon: "))-1])
+            choice=int(input("Choose your second pokemon: "))
+            if choice == 0 or choice > len(pokemon_list):
+                affichage.clear()
+                print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
+                exit(1)
+            chosen_pokemon.append(create_pokemon(pokemon_list[choice-1]))
         else:
-            chosen_pokemon.append(pokemon_list[int(input("Choose your pokemon: "))-1])
+            choice=int(input("Choose your pokemon: "))
+            if choice == 0 or choice > len(pokemon_list):
+                affichage.clear()
+                print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
+                exit(1)
+            chosen_pokemon.append(create_pokemon(pokemon_list[choice-1]))
         affichage.clear()
     return chosen_pokemon
 
@@ -38,22 +85,27 @@ def choose_attack(character: Character) -> str:
         return choose_attack(character)
     
 def choose_attack_bot(character: Character) -> str:
-    randnb = random.randint(0, len(character.get_attack_list())-1)
-    return character.get_attack_list()[randnb]
+    a_list = []
+    for key in character.get_attack_list():
+         a_list.append(key)
+    randnb = random.randint(0, len(a_list)-1)
+    return a_list[randnb]
+    
     
 def choose_pokemon_bot(pokemon_list: list) -> list:
     chosen_pokemon = []
     randnb = random.randint(0, len(pokemon_list)-1)
-    chosen_pokemon.append(pokemon_list[randnb])
+    chosen_pokemon.append(create_pokemon(pokemon_list[randnb]))
     randnb2 = random.randint(0, len(pokemon_list)-1)
     while randnb2 == randnb:
         randnb2 = random.randint(0, len(pokemon_list)-1)
-    chosen_pokemon.append(pokemon_list[randnb2])
+    chosen_pokemon.append(create_pokemon(pokemon_list[randnb2]))
     return chosen_pokemon
 
 def choose_pokemon_to_fight(player_inventory: list) -> Character:
     affichage=Affichage()
-    affichage.display_character_list(player_inventory)
+    pokemon_stats=create_all_pokemon_stats()
+    affichage.display_characters_choose(player_inventory)
     pokemon = int(input("Choose your pokemon for the fight: "))
     match(pokemon):
         case 1:
@@ -61,7 +113,8 @@ def choose_pokemon_to_fight(player_inventory: list) -> Character:
         case 2:
             return player_inventory[1]
         case _:
-            print("[red]Error : [/red][white]Choose a valid pokemon[/white]")
+            affichage.clear()
+            print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
             return choose_pokemon_to_fight(player_inventory)
         
 def choose_pokemon_to_fight_bot(bot_inventory: list) -> Character:
@@ -83,31 +136,63 @@ def combat(player_pokemon: Character, bot_pokemon: Character)-> bool:
     if player_pokemon.is_alive():
         affichage.display_player_winner(player_pokemon)
         input("Press Enter to continue...")
-        time.sleep(3)
         return True
     else:
         affichage.display_bot_winner(bot_pokemon)
         input("Press Enter to continue...")
-        time.sleep(3)
         return False
-  
-def main():
+    
+def check_attack(attack: str, attack_list: list) -> bool:
+    for a in attack_list:
+        if a == attack:
+            return True
+    return False
+
+def main_menu_choice():
     affichage=Affichage()
-    affichage.clear()
-    pokemon_list = create_pokemon()
+    affichage.main_menu()
+    choice=int(input("Your choice: "))
+    if choice != 1 and choice != 2:
+        affichage.clear()
+        print(f"[red]Error : [/red][white]Choose a valid option[/white]")
+        exit(1)
+    if choice == 2:
+        affichage.clear()
+        exit(0)
+
+def init_game():
+    pokemon_list = create_pokemon_list()
     player_inventory = choose_pokemon(pokemon_list)
     bot_inventory = choose_pokemon_bot(pokemon_list)
+    return player_inventory, bot_inventory
+
+def init_pokemon(player_inventory: list, bot_inventory: list):
+    player_pokemon = choose_pokemon_to_fight(player_inventory)
+    bot_pokemon = choose_pokemon_to_fight_bot(bot_inventory)
+    return player_pokemon, bot_pokemon
+
+def init_combat(player_inventory: list, bot_inventory: list):
     while len(player_inventory) > 0 and len(bot_inventory) > 0:
-        player_pokemon = choose_pokemon_to_fight(player_inventory)
-        bot_pokemon = choose_pokemon_to_fight_bot(bot_inventory)
+        player_pokemon, bot_pokemon = init_pokemon(player_inventory, bot_inventory)
         if combat(player_pokemon, bot_pokemon):
             bot_inventory.remove(bot_pokemon)
         else:
             player_inventory.remove(player_pokemon)
+
+def check_winner(player_inventory: list) -> bool:
     if len(player_inventory) > 0:
-        affichage.display_game_winner(True)
+        return True
     else:
-        affichage.display_game_winner(False)
+        return False
+
+
+def main():
+    affichage=Affichage()
+    main_menu_choice()
+    affichage.clear()
+    player_inventory, bot_inventory = init_game()
+    init_combat(player_inventory, bot_inventory)
+    affichage.display_game_winner(check_winner(player_inventory))
 
 
 if __name__ == "__main__":
