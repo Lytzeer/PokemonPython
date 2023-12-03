@@ -59,14 +59,24 @@ def choose_pokemon(pokemon_list: list) -> list:
     for i in range(2):
         affichage.display_character_list(pokemon_list,pokemon_stats)
         if i>0:
-            choice=int(input("Choose your second pokemon: "))
+            choice=input("Choose your second pokemon: ")
+            if choice =='':
+                affichage.clear()
+                print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
+                exit(1)
+            choice=int(choice)
             if choice == 0 or choice > len(pokemon_list):
                 affichage.clear()
                 print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
                 exit(1)
             chosen_pokemon.append(create_pokemon(pokemon_list[choice-1],pokemon_stats[pokemon_list[choice-1]]))
         else:
-            choice=int(input("Choose your pokemon: "))
+            choice=input("Choose your pokemon: ")
+            if choice =='':
+                affichage.clear()
+                print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
+                exit(1)
+            choice=int(choice)
             if choice == 0 or choice > len(pokemon_list):
                 affichage.clear()
                 print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
