@@ -18,15 +18,15 @@ def create_pokemon_list() -> list:
 
 def create_all_pokemon_stats() -> dict:
     pokemon_stats = {}
-    pokemon_stats["Salameche"] = {"HP": 100, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
-    pokemon_stats["Arcanin"] = {"HP": 100, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
-    pokemon_stats["Ponyta"] = {"HP": 100, "Type": "fire", "Attack List": {"Flamethrower": 10, "Fire Blast": 20}}
-    pokemon_stats["Carapuce"] = {"HP": 100, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
-    pokemon_stats["Tortank"] = {"HP": 100, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
-    pokemon_stats["Psykokwak"] = {"HP": 100, "Type": "water", "Attack List": {"Water Gun": 10, "Hydro Pump": 20}}
-    pokemon_stats["Bulbizarre"] = {"HP": 100, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
-    pokemon_stats["Florizarre"] = {"HP": 100, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
-    pokemon_stats["Paras"] = {"HP": 100, "Type": "grass", "Attack List": {"Vine Whip": 10, "Razor Leaf": 20}}
+    pokemon_stats["Salameche"] = {"HP": 285, "Type": "fire", "Attack List": {"Ember": 40, "Fire Spin": 60}}
+    pokemon_stats["Arcanin"] ={"HP": 380, "Type": "fire", "Attack List": {"Fire Fang": 45, "Flare Blitz": 70}}
+    pokemon_stats["Ponyta"] = {"HP": 330, "Type": "fire", "Attack List": {"Fire Spin": 35, "Flame Charge": 50}}
+    pokemon_stats["Carapuce"] = {"HP": 320, "Type": "water", "Attack List": {"Water Gun": 20, "Hydro Pump": 70}}
+    pokemon_stats["Tortank"] = {"HP": 530, "Type": "water", "Attack List": {"Aqua Tail": 30, "Hydro Pump": 80}}
+    pokemon_stats["Psykokwak"] = {"HP": 350, "Type": "water", "Attack List": {"Water Pulse": 27, "Hydro Pump": 70}}
+    pokemon_stats["Bulbizarre"] = {"HP": 328, "Type": "grass", "Attack List": {"Vine Whip": 25, "Solar Beam": 30}}
+    pokemon_stats["Florizarre"] = {"HP": 490, "Type": "grass", "Attack List": {"Razor Leaf": 35, "Frenzy Plant": 40}}
+    pokemon_stats["Paras"] = {"HP": 300, "Type": "grass", "Attack List": {"Seed Bomb": 30, "X-Scissor": 35}}
     return pokemon_stats
 
 def create_pokemon(pokemon_name: str,pokemon_stats) -> Character:
