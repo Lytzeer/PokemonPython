@@ -29,28 +29,29 @@ def create_all_pokemon_stats() -> dict:
     pokemon_stats["Paras"] = {"HP": 300, "Type": "grass", "Attack List": {"Seed Bomb": 30, "X-Scissor": 35}}
     return pokemon_stats
 
-def create_pokemon(pokemon_name: str,pokemon_stats) -> Character:
-    if pokemon_name == "Salameche":
-        return Salameche(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    elif pokemon_name == "Arcanin":
-        return Arcanin(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    elif pokemon_name == "Ponyta":
-        return Ponyta(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    elif pokemon_name == "Carapuce":
-        return Carapuce(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    elif pokemon_name == "Tortank":
-        return Tortank(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    elif pokemon_name == "Psykokwak":
-        return Psykokwak(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    elif pokemon_name == "Bulbizarre":
-        return Bulbizarre(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    elif pokemon_name == "Florizarre":
-        return Florizarre(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    elif pokemon_name == "Paras":
-        return Paras(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
-    else:
-        print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
-        exit(1)
+def create_pokemon(pokemon_name: str, pokemon_stats) -> Character:
+    match pokemon_name:
+        case "Salameche":
+            return Salameche(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case "Arcanin":
+            return Arcanin(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case "Ponyta":
+            return Ponyta(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case "Carapuce":
+            return Carapuce(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case "Tortank":
+            return Tortank(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case "Psykokwak":
+            return Psykokwak(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case "Bulbizarre":
+            return Bulbizarre(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case "Florizarre":
+            return Florizarre(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case "Paras":
+            return Paras(pokemon_name, pokemon_stats["HP"], pokemon_stats["Type"], pokemon_stats["Attack List"])
+        case _:
+            print(f"[red]Error : [/red][white]Choose a valid pokemon[/white]")
+            exit(1)
 
 def choose_pokemon(pokemon_list: list) -> list:
     chosen_pokemon = []
