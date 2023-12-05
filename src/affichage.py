@@ -89,11 +89,13 @@ class Affichage:
         self._healthbar.update_health(player_pokemon.get_hp())
         self._healthbar.update_maxHealth(player_pokemon.get_max_hp())
         self._healthbar.update_name(player_pokemon.get_name())
+        self._healthbar.create_healthbar()
         self._healthbar.display_healthbar()
         print(f"\n[magenta]VS[/magenta]\n")
         self._healthbar.update_health(bot_pokemon.get_hp())
         self._healthbar.update_maxHealth(bot_pokemon.get_max_hp())
         self._healthbar.update_name(bot_pokemon.get_name())
+        self._healthbar.create_healthbar()
         self._healthbar.display_healthbar()
 
     def display_player_winner(self, player_pokemon):
