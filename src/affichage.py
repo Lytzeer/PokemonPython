@@ -32,10 +32,9 @@ class Affichage:
         self._table.add_column(f"[magenta]Name[/magenta]")
         self._table.add_column(f"[red]HP[/red]")
         self._table.add_column(f"[green]Type[/green]")
-        self._table.add_column(f"[cyan]Is Alive[/cyan]", justify="center")
         i=1
         for character in character_list:
-            self._table.add_row(str(i),character, str(pokemon_stats[character]["HP"]), pokemon_stats[character]["Type"], self.convert_is_alive(pokemon_stats[character]["HP"]>0))
+            self._table.add_row(str(i),character, str(pokemon_stats[character]["HP"]), pokemon_stats[character]["Type"])
             i+=1
         print(self._table)
         self._table = Table()
@@ -54,9 +53,11 @@ class Affichage:
         self._table.add_column(f"[orange3]ID[/orange3]")
         self._table.add_column(f"[magenta]Name[/magenta]")
         self._table.add_column(f"[red]HP[/red]")
+        self._table.add_column(f"[green]Type[/green]")
+        self._table.add_column(f"[cyan]Is Alive[/cyan]", justify="center")
         i=1
         for character in character_list:
-            self._table.add_row(str(i),character.get_name(), str(character.get_hp()))
+            self._table.add_row(str(i),character.get_name(), str(character.get_hp()), character.get_type(), self.convert_is_alive(character.is_alive()))
             i+=1
         print(self._table)
         self._table = Table()
