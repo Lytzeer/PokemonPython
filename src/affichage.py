@@ -67,7 +67,7 @@ class Affichage:
         self._table.add_column("[magenta]Name[/magenta]")
         self._table.add_column("[red]Damage[/red]")
         for attack in attack_list:
-            self._table.add_row(attack, str(attack_list[attack]))
+            self._table.add_row(attack, str(attack_list[attack][0]))
         print(self._table)
         self._table = Table()
 
