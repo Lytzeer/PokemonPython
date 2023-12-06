@@ -3,6 +3,13 @@ from rich import print
 from healthbar import Healthbar
 from affichage import Affichage
 import random
+import logging
+import os
+
+if not os.path.exists('./log/pokemon_battle/'):
+    os.makedirs('./log/pokemon_battle/')
+
+logging.basicConfig(filename='./log/pokemon_battle/pokemon_battle.log', level=logging.DEBUG)
 
 class Character:
 
@@ -51,7 +58,7 @@ class Character:
     def attack(self, enemy: Character, attack_name: str):
         random_number = random.randint(0, 100)
         if random_number > self.get_accuracy(attack_name):
-            print(f"[red]{self.get_name()} missed his attack![/red]")
+            logging.info(f"{self.get_name()} missed his attack!")
             return
         enemy.decrease_hp(self.get_damage(attack_name)*self.check_type(enemy))
     
