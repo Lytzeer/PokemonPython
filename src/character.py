@@ -2,6 +2,7 @@ from __future__ import annotations
 from rich import print
 from healthbar import Healthbar
 from affichage import Affichage
+import random
 
 class Character:
 
@@ -10,7 +11,7 @@ class Character:
         self._hp = maxhp
         self._max_hp = maxhp
         self._type = character_type
-        self._attack_list = attack_list # {attack_name: damage, ...}
+        self._attack_list = attack_list # {attack_name: [damage, accuracy], ...}
         # Create healthbar
         self._healthbar = Healthbar(self._name, self._max_hp, self._hp)
         self._healthbar.create_healthbar()
@@ -35,6 +36,12 @@ class Character:
     def get_attack(self, attack_name):
         return self._attack_list[attack_name]
     
+    def get_damage(self, attack_name):
+        return self._attack_list[attack_name][0]
+    
+    def get_accuracy(self, attack_name):
+        return self._attack_list[attack_name][1]
+    
     def decrease_hp(self, damage):
         self._hp -= damage if damage <= self._hp else self._hp
 
@@ -42,7 +49,11 @@ class Character:
         return self._hp > 0
     
     def attack(self, enemy: Character, attack_name: str):
-        enemy.decrease_hp(self._attack_list[attack_name]*self.check_type(enemy))
+        random_number = random.randint(0, 100)
+        if random_number > self.get_accuracy(attack_name):
+            print(f"[red]{self.get_name()} missed his attack![/red]")
+            return
+        enemy.decrease_hp(self.get_damage(attack_name)*self.check_type(enemy))
     
     def check_type(self, enemy):
         if self._type == "fire":
@@ -106,32 +117,3 @@ class Florizarre(Character):
 
 class Paras(Character):
     pass
-
-if __name__ == "__main__":
-    affichage = Affichage()
-    salameche = Salameche("Salameche", 100, 10, 10, "fire", {"Flamethrower": 20, "Fireball": 10})
-    arcanin = Arcanin("Arcanin", 200, 20, 20, "fire", {"Flamethrower": 20, "Fireball": 10})
-    character_list = [salameche, arcanin]
-    affichage.display_character_list(character_list)
-    choose = input("Choose your character: ")
-    match(choose):
-        case "1":
-            affichage.clear()
-            index_character = 0
-            print("You choose [red]Salameche[/red]!\nChoose an [red]attack[/red]:")
-            affichage.display_attack_list(character_list[index_character].get_attack_list())
-        case "2":
-            affichage.clear()
-            print(f"You choose [red]Arcanin[/red]!\nChoose an [red]attack[/red]:")
-            index_character = 1
-            affichage.display_attack_list(character_list[index_character].get_attack_list())
-    
-    attack = input("Your choice: ")
-    affichage.clear()
-    match(attack):
-        case "1":
-            attack = "Flamethrower"
-        case "2":
-            attack = "Fireball"
-    affichage.display_attack_choose(attack)
-    affichage.display_combat_hud(character_list[0], character_list[1], 1)
