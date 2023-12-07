@@ -4,6 +4,8 @@ This project consist to recreate the combat system of pokemon in Python 3.12 wit
 
 ## I. How to launch the game
 
+### On Windows
+
 1. Clone this repository
 ```shell
 git clone https://github.com/Lytzeer/PokemonPython.git
@@ -19,6 +21,26 @@ pip install -r requirements.txt
 4. Launch the game
 ```shell
 python .\src\play.py
+```
+5. Enjoy it !
+
+### On Linux
+
+1. Clone this repository
+```shell
+git clone https://github.com/Lytzeer/PokemonPython.git
+```
+2. Go to the repository folder
+```shell
+cd /PokemonPython/
+```
+3. Install requirements
+```shell
+pip3 install -r requirements.txt
+```
+4. Launch the game
+```shell
+python3 /src/play.py
 ```
 5. Enjoy it !
 
