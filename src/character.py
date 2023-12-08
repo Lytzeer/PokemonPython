@@ -4,12 +4,6 @@ from healthbar import Healthbar
 from affichage import Affichage
 import random
 import logging
-import os
-
-if not os.path.exists('./log/pokemon_battle/'):
-    os.makedirs('./log/pokemon_battle/')
-
-logging.basicConfig(filename='./log/pokemon_battle/pokemon_battle.log', level=logging.DEBUG)
 
 class Character:
 
