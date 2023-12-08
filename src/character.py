@@ -41,6 +41,7 @@ class Character:
         return self._attack_list[attack_name][0]
     
     def get_accuracy(self, attack_name):
+        print(attack_name)
         return self._attack_list[attack_name][1]
     
     def decrease_hp(self, damage):

@@ -64,10 +64,13 @@ class Affichage:
     
     def display_attack_list(self, attack_list):
         self._table.title = f"[blue]Attack List[/blue]"
+        self._table.add_column("[orange3]ID[/orange3]")
         self._table.add_column("[magenta]Name[/magenta]")
         self._table.add_column("[red]Damage[/red]")
+        i=1
         for attack in attack_list:
-            self._table.add_row(attack, str(attack_list[attack][0]))
+            self._table.add_row(str(i), attack, str(attack_list[attack][0]))
+            i+=1
         print(self._table)
         self._table = Table()
 

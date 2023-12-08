@@ -112,15 +112,22 @@ def choose_attack(character: Character,bot_pokemon: Character, round,error="") -
         print(error)
     affichage.display_combat_hud(character, bot_pokemon, round)
     affichage.display_attack_list(character.get_attack_list())
+    attack_list = character.get_attack_list()
+    attack_list_array = []
+    for attack in attack_list:
+        attack_list_array.append(attack)
     attack = input("Your choice: ")
-    if attack in character.get_attack_list():
-        logging.info(f"Attack {attack} chosen")
-        return attack
-    else:
-        error = f"[red]Error : [/red][white]Choose a valid attack[/white]"
-        logging.error(f"Error : Choose a valid attack")
-        affichage.clear()
-        return choose_attack(character,bot_pokemon,round,error)
+    match(attack):
+        case "1":
+            logging.info(f"Attack {attack_list_array[0]} chosen")
+            return [attack_list_array[0]]
+        case "2":
+            logging.info(f"Attack {attack_list_array[1]} chosen")
+            return attack_list_array[1]
+        case _:
+            affichage.clear()
+            error = f"[red]Error : [/red][white]Choose a valid attack[/white]"
+            logging.error(f"Error : Choose a valid attack")
     
 def choose_attack_bot(character: Character) -> str:
     a_list = []
@@ -173,6 +180,7 @@ def combat(player_pokemon: Character, bot_pokemon: Character)-> bool:
         affichage.clear()
         attack = choose_attack(player_pokemon,bot_pokemon,round)
         bot_attack = choose_attack_bot(bot_pokemon)
+        print(attack)
         player_pokemon.attack(bot_pokemon, attack)
         bot_pokemon.attack(player_pokemon, bot_attack)
         affichage.display_combat_hud(player_pokemon, bot_pokemon, round)
@@ -195,7 +203,12 @@ def check_attack(attack: str, attack_list: list) -> bool:
 def main_menu_choice():
     affichage=Affichage()
     affichage.main_menu()
-    choice=int(input("Your choice: "))
+    choice=input("Your choice: ")
+    if choice == '':
+        affichage.clear()
+        print(f"[red]Error : [/red][white]Choose a valid option[/white]")
+        exit(1)
+    choice=int(choice)
     if choice != 1 and choice != 2 and 3:
         affichage.clear()
         print(f"[red]Error : [/red][white]Choose a valid option[/white]")
