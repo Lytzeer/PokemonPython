@@ -49,7 +49,7 @@ python3 /src/play.py
 You can do pokemon fight with a team of 2 pokemon.  
 To choose your team, you just need to enter the id, one by one, of the pokemon you want.  
 After that you can choose the pokemon you want in first for the fight.  
-During the attack phase you just need to enter the exactly same name of the attack you want to do.  
+During the attack phase you just need to enter the id of the attack you want to do.  
 
 INFO : The game take care of strenghts and weaknesses of each pokemon type.
 
