@@ -2,6 +2,7 @@ from panel import Panels
 from rich import print
 from rich.table import Table
 from os import system
+import os
 from healthbar import Healthbar
 
 class Affichage:
@@ -17,7 +18,10 @@ class Affichage:
             return "❌"
         
     def clear(self):
-        system("cls")
+        if(os.name=="posix"):
+            system("clear")
+        else:
+            system("cls")
 
 
     def display_character_list(self, character_list, pokemon_stats):
