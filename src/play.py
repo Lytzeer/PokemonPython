@@ -120,7 +120,7 @@ def choose_attack(character: Character,bot_pokemon: Character, round,error="") -
     match(attack):
         case "1":
             logging.info(f"Attack {attack_list_array[0]} chosen")
-            return [attack_list_array[0]]
+            return attack_list_array[0]
         case "2":
             logging.info(f"Attack {attack_list_array[1]} chosen")
             return attack_list_array[1]
@@ -180,7 +180,6 @@ def combat(player_pokemon: Character, bot_pokemon: Character)-> bool:
         affichage.clear()
         attack = choose_attack(player_pokemon,bot_pokemon,round)
         bot_attack = choose_attack_bot(bot_pokemon)
-        print(attack)
         player_pokemon.attack(bot_pokemon, attack)
         bot_pokemon.attack(player_pokemon, bot_attack)
         affichage.display_combat_hud(player_pokemon, bot_pokemon, round)
