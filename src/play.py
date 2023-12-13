@@ -208,7 +208,7 @@ def main_menu_choice():
         print(f"[red]Error : [/red][white]Choose a valid option[/white]")
         exit(1)
     choice=int(choice)
-    if choice != 1 and choice != 2 and 3:
+    if choice != 1 and choice != 2 and choice != 3:
         affichage.clear()
         print(f"[red]Error : [/red][white]Choose a valid option[/white]")
         exit(1)
