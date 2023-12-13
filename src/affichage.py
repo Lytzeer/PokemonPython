@@ -87,22 +87,31 @@ class Affichage:
     def display_attack_choose(self, attack):
         print(f"You choose [red]{attack}[/red] attack!")
 
+    def display_emoji_type(self, pokemon)-> str:
+        match(pokemon.get_type()):
+            case "fire":
+                return "🔥"
+            case "water":
+                return "💧"
+            case "grass":
+                return "🌿"
+
     def display_combat_hud(self, player_pokemon, bot_pokemon, round, err=[]):
         self._panel.create_panel()
         self._panel.update_panel_title(f"[blue]Pokemon Battle[/blue]")
         self._panel.update_panel_subtitle(f"[cyan]Round {round}[/cyan]")
-        self._panel.update_panel_text(f"[green]{player_pokemon.get_name()}[/green] [magenta]VS[/magenta] [red]{bot_pokemon.get_name()}[/red]")
+        self._panel.update_panel_text(f"{self.display_emoji_type(player_pokemon)}[green]{player_pokemon.get_name()}[/green] [magenta]VS[/magenta] {self.display_emoji_type(bot_pokemon)} [red]{bot_pokemon.get_name()}[/red]")
         self._panel.display_panel()
         self._healthbar.create_healthbar()
         self._healthbar.update_health(player_pokemon.get_hp())
         self._healthbar.update_maxHealth(player_pokemon.get_max_hp())
-        self._healthbar.update_name(player_pokemon.get_name())
+        self._healthbar.update_name(f"{self.display_emoji_type(player_pokemon)} {player_pokemon.get_name()}")
         self._healthbar.create_healthbar()
         self._healthbar.display_healthbar()
         print(f"\n[magenta]VS[/magenta]\n")
         self._healthbar.update_health(bot_pokemon.get_hp())
         self._healthbar.update_maxHealth(bot_pokemon.get_max_hp())
-        self._healthbar.update_name(bot_pokemon.get_name())
+        self._healthbar.update_name(f"{self.display_emoji_type(bot_pokemon)} {bot_pokemon.get_name()}")
         self._healthbar.create_healthbar()
         self._healthbar.display_healthbar()
 
