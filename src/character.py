@@ -51,6 +51,7 @@ class Character:
         return self._hp > 0
     
     def attack(self, enemy: Character, attack_name: str):
+        random.seed()
         random_number = random.randint(0, 100)
         if random_number > self.get_accuracy(attack_name):
             logging.info(f"{self.get_name()} missed his attack!")
